@@ -88,6 +88,34 @@
             background-color: #229954;
         }
         
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-in-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
         footer {
             background-color: #333;
             color: white;
@@ -110,7 +138,7 @@
                 <div class="product-image">👟</div>
                 <div class="product-name">Sepatu Olahraga</div>
                 <div class="product-price">Rp 299.000</div>
-                <button class="btn">Beli Sekarang</button>
+                <button class="btn" onclick="beliProduk('Sepatu Olahraga', 299000)">Beli Sekarang</button>
             </div>
             
             <!-- Produk 2 -->
@@ -118,7 +146,7 @@
                 <div class="product-image">👕</div>
                 <div class="product-name">Kaos Polos Premium</div>
                 <div class="product-price">Rp 89.000</div>
-                <button class="btn">Beli Sekarang</button>
+                <button class="btn" onclick="beliProduk('Kaos Polos Premium', 89000)">Beli Sekarang</button>
             </div>
             
             <!-- Produk 3 -->
@@ -126,7 +154,7 @@
                 <div class="product-image">⌚</div>
                 <div class="product-name">Jam Tangan Digital</div>
                 <div class="product-price">Rp 199.000</div>
-                <button class="btn">Beli Sekarang</button>
+                <button class="btn" onclick="beliProduk('Jam Tangan Digital', 199000)">Beli Sekarang</button>
             </div>
         </div>
     </div>
@@ -134,5 +162,23 @@
     <footer>
         <p>&copy; 2025 Revshopp - Semua Hak Dilindungi</p>
     </footer>
+
+    <script>
+        function beliProduk(namaProduk, harga) {
+            // Tampilkan notifikasi
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = `✓ ${namaProduk} ditambahkan! Harga: Rp ${harga.toLocaleString('id-ID')}`;
+            document.body.appendChild(notification);
+            
+            // Hapus notifikasi setelah 3 detik
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+            
+            // Alert konfirmasi
+            alert(`Terima kasih! Anda membeli:\n\n${namaProduk}\nHarga: Rp ${harga.toLocaleString('id-ID')}\n\nLanjutkan ke checkout?`);
+        }
+    </script>
 </body>
 </html>
